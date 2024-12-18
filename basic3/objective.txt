@@ -1,0 +1,24 @@
+(1) Python Fastapi를 활용한 To-Do List API 만들기
+FastAPI를 활용하여 To-Do List API를 만들어 주세요. 모든 데이터는 **데이터베이스(DB)**에 기록
+되고 관리되어야 합니다. 다음 기능이 포함되어야 합니다.
+*DBMS : PostgreSQL, MySQL, MariaDB 등 사용
+1. 새로운 할 일을 생성
+o Endpoint: POST /todos/
+o 요청으로 전달된 데이터를 바탕으로 새로운 To-Do 항목을 생성하고, DB에 저장합
+니다.
+2. 모든 할 일 조회
+o Endpoint: GET /todos/
+o DB에 저장된 모든 To-Do 항목을 반환합니다.
+3. 특정 할 일 조회
+o Endpoint: GET /todos/{id}
+o 특정 ID에 해당하는 To-Do 항목을 조회하여 반환합니다.
+4. 특정 할 일을 수정
+o Endpoint: PUT /todos/{id}
+o 요청으로 전달된 데이터를 바탕으로 특정 ID에 해당하는 To-Do 항목을 수정합니
+다.
+5. 특정 할 일을 삭제
+o Endpoint: DELETE /todos/{id}
+o 특정 ID에 해당하는 To-Do 항목을 DB에서 삭제합니다.
+코드는 ./basic3 폴더에 작성해주시고, 제시된 기능 외에 추가하고 싶은 기능이 있다면 자유롭게
+구현해주세요.
+DB 설계 후 테이블과 데이터가 들어간 예시 이미지를 설명 문서에 추가해주세요.
