@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import api from "../services/api";
 import TodoForm from "./TodoForm";
+import "./TodoList.css"; // CSS 파일 추가
 
 const TodoList = () => {
   const [todos, setTodos] = useState([]); // To-Do 리스트 상태
@@ -53,7 +54,7 @@ const TodoList = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>To-Do List</h1>
 
       {/* To-Do 추가 폼 */}
@@ -70,9 +71,9 @@ const TodoList = () => {
                 cursor: "pointer",
               }}
             >
-              {todo.task} - {todo.completed ? "Done" : "Not Done"}
+              {todo.task}
             </span>
-            <button onClick={() => deleteTodo(todo.id)}>Delete</button> {/* 삭제 버튼 */}
+            <button onClick={() => deleteTodo(todo.id)}>Delete</button>
           </li>
         ))}
       </ul>

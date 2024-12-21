@@ -1,0 +1,54 @@
+/* TodoList.css */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    margin: 10px 0;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  li span {
+    flex-grow: 1;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  li span:hover {
+    color: #007bff;
+  }
+  
+  button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff4d4d;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #e60000;
+  }
+  
