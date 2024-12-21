@@ -11,9 +11,18 @@ const TodoList = () => {
     const fetchTodos = async () => {
       try {
         const response = await api.get("/todos/");
-        setTodos(response.data);
+        const data = response.data;
+
+        // 가져온 데이터가 비어있는 경우 기본 항목 추가
+        if (data.length === 0) {
+          const defaultTask = { task: "아무것도 안하기", completed: true };
+          const defaultResponse = await api.post("/todos/", defaultTask); // 서버에 기본 항목 추가
+          setTodos([defaultResponse.data]); // 상태에 기본 항목 업데이트
+        } else {
+          setTodos(data); // 서버에서 가져온 데이터를 상태로 설정
+        }
       } catch (error) {
-        console.error("Error fetching todos:", error);
+        console.error("To-Do 데이터를 가져오는 중 오류 발생:", error);
       }
     };
     fetchTodos();
@@ -27,18 +36,18 @@ const TodoList = () => {
       setTodos([...todos, response.data]);
       setNewTask(""); // 입력 필드 초기화
     } catch (error) {
-      console.error("Error adding todo:", error);
+      console.error("To-Do를 추가하는 중 오류 발생:", error);
     }
   };
 
   // To-Do 완료 상태 변경
   const toggleCompletion = async (todo) => {
     try {
-      const updatedTodo = { ...todo, completed: !todo.completed };
+      const updatedTodo = { ...todo, completed: !todo.completed }; // 완료 상태 반전
       const response = await api.put(`/todos/${todo.id}`, updatedTodo);
-      setTodos(todos.map((t) => (t.id === todo.id ? response.data : t)));
+      setTodos(todos.map((t) => (t.id === todo.id ? response.data : t))); // 상태 업데이트
     } catch (error) {
-      console.error("Error updating todo:", error);
+      console.error("To-Do 상태를 변경하는 중 오류 발생:", error);
     }
   };
 
@@ -46,9 +55,9 @@ const TodoList = () => {
   const deleteTodo = async (id) => {
     try {
       await api.delete(`/todos/${id}`);
-      setTodos(todos.filter((todo) => todo.id !== id));
+      setTodos(todos.filter((todo) => todo.id !== id)); // 삭제된 항목 제외
     } catch (error) {
-      console.error("Error deleting todo:", error);
+      console.error("To-Do를 삭제하는 중 오류 발생:", error);
     }
   };
 
