@@ -1,16 +1,47 @@
 /* TodoList.css */
 .container {
     max-width: 600px;
-    margin: 0 auto;
+    margin: 50px auto;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: #f7faff;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
   }
   
   h1 {
     text-align: center;
     color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .todo-form {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .todo-form input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px 0 0 5px;
+  }
+  
+  .todo-form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .todo-form button:hover {
+    background-color: #0056b3;
   }
   
   ul {
@@ -30,25 +61,28 @@
   }
   
   li span {
-    flex-grow: 1;
+    flex: 1;
     font-size: 16px;
     color: #555;
+    cursor: pointer;
   }
   
-  li span:hover {
-    color: #007bff;
+  li span.completed {
+    text-decoration: line-through;
+    color: #aaa;
   }
   
-  button {
+  button.delete-btn {
     padding: 5px 10px;
     border: none;
     border-radius: 5px;
     background-color: #ff4d4d;
     color: #fff;
     cursor: pointer;
+    transition: background-color 0.3s;
   }
   
-  button:hover {
+  button.delete-btn:hover {
     background-color: #e60000;
   }
   
