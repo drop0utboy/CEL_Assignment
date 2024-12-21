@@ -86,3 +86,11 @@
     background-color: #e60000;
   }
   
+.header-image {
+    width: 100%; /* 부모 컨테이너에 맞게 크기 조정 */
+    max-width: 400px; /* 최대 크기 설정 */
+    margin: 0 auto 20px; /* 가운데 정렬 및 하단 여백 추가 */
+    display: block;
+    border-radius: 10px; /* 테두리에 둥근 효과 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+  }
