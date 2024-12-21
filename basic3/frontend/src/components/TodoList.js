@@ -6,6 +6,8 @@ import nothingToDoImage from "../assets/images/nothing_to_do.jpg"; // 이미지 
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
   const [newTask, setNewTask] = useState("");
+  const [editingId, setEditingId] = useState(null); // 현재 편집 중인 항목 ID
+  const [editedTask, setEditedTask] = useState(""); // 편집 중인 내용
 
   // 기존 To-Do 데이터 가져오기
   useEffect(() => {
@@ -56,9 +58,38 @@ const TodoList = () => {
   const deleteTodo = async (id) => {
     try {
       await api.delete(`/todos/${id}`);
-      setTodos(todos.filter((todo) => todo.id !== id));
+      setTodos(todos.filter((todo) => todo.id !== id)); // 상태에서 항목 삭제
     } catch (error) {
       console.error("To-Do를 삭제하는 중 오류 발생:", error);
+    }
+  };
+
+  // 편집 모드 활성화
+  const startEditing = (todo) => {
+    setEditingId(todo.id);
+    setEditedTask(todo.task);
+  };
+
+  // To-Do 내용 저장
+  const saveTodo = async (id) => {
+    try {
+      // 편집 중인 항목 가져오기
+      const todoToUpdate = todos.find((todo) => todo.id === id);
+  
+      // FastAPI 스키마에 맞게 데이터 준비
+      const updatedTodo = {
+        task: editedTask,            // 수정된 작업 내용
+        completed: todoToUpdate.completed, // 기존 완료 상태 유지
+      };
+  
+      console.log("Updating Todo:", updatedTodo); // 디버깅용 로그
+      const response = await api.put(`/todos/${id}`, updatedTodo);
+  
+      // 상태 업데이트
+      setTodos(todos.map((todo) => (todo.id === id ? response.data : todo)));
+      setEditingId(null); // 편집 모드 해제
+    } catch (error) {
+      console.error("To-Do 내용을 저장하는 중 오류 발생:", error);
     }
   };
 
@@ -84,15 +115,31 @@ const TodoList = () => {
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>
-            <span
-              className={todo.completed ? "completed" : ""}
-              onClick={() => toggleCompletion(todo)}
-            >
-              {todo.task}
-            </span>
-            <button className="delete-btn" onClick={() => deleteTodo(todo.id)}>
-              삭제
-            </button>
+            <span>ID: {todo.id}</span> {/* ID 표시 */}
+            {editingId === todo.id ? (
+              <>
+                <input
+                  type="text"
+                  value={editedTask}
+                  onChange={(e) => setEditedTask(e.target.value)}
+                />
+                <button onClick={() => saveTodo(todo.id)}>저장</button>
+                <button onClick={() => setEditingId(null)}>취소</button>
+              </>
+            ) : (
+              <>
+                <span
+                  className={todo.completed ? "completed" : ""}
+                  onClick={() => toggleCompletion(todo)}
+                >
+                  {todo.task}
+                </span>
+                <button onClick={() => startEditing(todo)}>수정</button>
+                <button className="delete-btn" onClick={() => deleteTodo(todo.id)}>
+                  삭제
+                </button>
+              </>
+            )}
           </li>
         ))}
       </ul>
