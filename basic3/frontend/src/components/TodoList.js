@@ -108,7 +108,7 @@ const TodoList = () => {
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
         />
-        <button onClick={addTodo}>추가</button>
+        <button className="add-btn" onClick={addTodo}>추가</button>
       </div>
 
       {/* To-Do 리스트 출력 */}
@@ -123,8 +123,8 @@ const TodoList = () => {
                   value={editedTask}
                   onChange={(e) => setEditedTask(e.target.value)}
                 />
-                <button onClick={() => saveTodo(todo.id)}>저장</button>
-                <button onClick={() => setEditingId(null)}>취소</button>
+                <button className="save-btn" onClick={() => saveTodo(todo.id)}>저장</button>
+                <button className="cancel-btn" onClick={() => setEditingId(null)}>취소</button>
               </>
             ) : (
               <>
@@ -134,10 +134,8 @@ const TodoList = () => {
                 >
                   {todo.task}
                 </span>
-                <button onClick={() => startEditing(todo)}>수정</button>
-                <button className="delete-btn" onClick={() => deleteTodo(todo.id)}>
-                  삭제
-                </button>
+                <button className="edit-btn" onClick={() => startEditing(todo)}>수정</button>
+                <button className="delete-btn" onClick={() => deleteTodo(todo.id)}>삭제</button>
               </>
             )}
           </li>

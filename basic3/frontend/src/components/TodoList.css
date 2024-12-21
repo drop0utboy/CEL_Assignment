@@ -1,4 +1,3 @@
-/* TodoList.css */
 .container {
     max-width: 600px;
     margin: 50px auto;
@@ -7,29 +6,29 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-family: Arial, sans-serif;
-  }
-  
-  h1 {
+}
+
+h1 {
     text-align: center;
     color: #333;
     margin-bottom: 20px;
-  }
-  
-  .todo-form {
+}
+
+.todo-form {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
-  }
-  
-  .todo-form input {
+}
+
+.todo-form input {
     flex: 1;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ddd;
     border-radius: 5px 0 0 5px;
-  }
-  
-  .todo-form button {
+}
+
+.todo-form button {
     padding: 10px 20px;
     font-size: 16px;
     color: #fff;
@@ -38,18 +37,18 @@
     border-radius: 0 5px 5px 0;
     cursor: pointer;
     transition: background-color 0.3s;
-  }
-  
-  .todo-form button:hover {
+}
+
+.todo-form button:hover {
     background-color: #0056b3;
-  }
-  
-  ul {
+}
+
+ul {
     list-style-type: none;
     padding: 0;
-  }
-  
-  li {
+}
+
+li {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -58,39 +57,82 @@
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  li span {
+}
+
+li span {
     flex: 1;
     font-size: 16px;
     color: #555;
     cursor: pointer;
-  }
-  
-  li span.completed {
+}
+
+li span.completed {
     text-decoration: line-through;
     color: #aaa;
-  }
-  
-  button.delete-btn {
-    padding: 5px 10px;
+}
+
+button {
+    padding: 8px 15px;
     border: none;
     border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* 수정 버튼 */
+button.edit-btn {
+    background-color: #f0ad4e;
+    color: #fff;
+}
+
+button.edit-btn:hover {
+    background-color: #ec971f;
+    transform: scale(1.05);
+}
+
+/* 저장 버튼 */
+button.save-btn {
+    margin-left: 10px;
+    background-color: #5cb85c;
+    color: #fff;
+}
+
+button.save-btn:hover {
+    margin-left: 10px;
+    background-color: #4cae4c;
+    transform: scale(1.05);
+}
+
+/* 취소 버튼 */
+button.cancel-btn {
+    margin-left: 2px;
+    background-color: #d9534f;
+    color: #fff;
+}
+
+button.cancel-btn:hover {
+    margin-left: 2px;
+    background-color: #c9302c;
+    transform: scale(1.05);
+}
+
+/* 삭제 버튼 */
+button.delete-btn {
     background-color: #ff4d4d;
     color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  button.delete-btn:hover {
+}
+
+button.delete-btn:hover {
     background-color: #e60000;
-  }
-  
+    transform: scale(1.05);
+}
+
 .header-image {
-    width: 100%; /* 부모 컨테이너에 맞게 크기 조정 */
-    max-width: 400px; /* 최대 크기 설정 */
-    margin: 0 auto 20px; /* 가운데 정렬 및 하단 여백 추가 */
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 20px;
     display: block;
-    border-radius: 10px; /* 테두리에 둥근 효과 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
-  }
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
