@@ -14,7 +14,7 @@ services:
 
   fastapi:
     build:
-      context: .
+      context: ./backend
     container_name: fastapi_container
     #노트북 성능 이슈로 sleep 3초 부여
     command: >
@@ -23,6 +23,18 @@ services:
       - "8000:8000"
     depends_on:
       - postgres
+
+  frontend:
+    build:
+      context: ./frontend  # React가 위치한 폴더 경로
+    container_name: frontend_container
+    ports:
+      - "3000:3000"
+    depends_on:
+      - fastapi
+    environment:
+      REACT_APP_API_URL: http://fastapi:8000  # React가 FastAPI와 통신할 API URL 설정
+
 
 volumes:
   postgres_data:
