@@ -29,6 +29,29 @@ const TodoList = () => {
     }
   };
 
+  // To-Do 완료 상태 변경 함수
+  const toggleCompletion = async (todo) => {
+    try {
+      const updatedTodo = { ...todo, completed: !todo.completed }; // 상태 반전
+      const response = await api.put(`/todos/${todo.id}`, updatedTodo); // 서버에 PUT 요청
+      setTodos(
+        todos.map((t) => (t.id === todo.id ? response.data : t)) // 상태 업데이트
+      );
+    } catch (error) {
+      console.error("Error updating todo:", error);
+    }
+  };
+
+  // To-Do 항목 삭제 함수
+  const deleteTodo = async (id) => {
+    try {
+      await api.delete(`/todos/${id}`); // 서버에 DELETE 요청
+      setTodos(todos.filter((todo) => todo.id !== id)); // 상태에서 제거
+    } catch (error) {
+      console.error("Error deleting todo:", error);
+    }
+  };
+
   return (
     <div>
       <h1>To-Do List</h1>
@@ -40,7 +63,16 @@ const TodoList = () => {
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>
-            {todo.task} - {todo.completed ? "Done" : "Not Done"}
+            <span
+              onClick={() => toggleCompletion(todo)} // 클릭 시 완료 상태 반전
+              style={{
+                textDecoration: todo.completed ? "line-through" : "none", // 완료 상태에 따라 스타일 변경
+                cursor: "pointer",
+              }}
+            >
+              {todo.task} - {todo.completed ? "Done" : "Not Done"}
+            </span>
+            <button onClick={() => deleteTodo(todo.id)}>Delete</button> {/* 삭제 버튼 */}
           </li>
         ))}
       </ul>
