@@ -60,11 +60,11 @@ const TodoList = () => {
       <div className="todo-form">
         <input
           type="text"
-          placeholder="Add a new task..."
+          placeholder="할 일을 추가하자"
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
         />
-        <button onClick={addTodo}>Add</button>
+        <button onClick={addTodo}>추가</button>
       </div>
 
       {/* To-Do 리스트 출력 */}
@@ -78,7 +78,7 @@ const TodoList = () => {
               {todo.task}
             </span>
             <button className="delete-btn" onClick={() => deleteTodo(todo.id)}>
-              Delete
+              삭제
             </button>
           </li>
         ))}
