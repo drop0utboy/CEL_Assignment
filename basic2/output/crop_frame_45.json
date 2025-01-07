@@ -1,0 +1,10 @@
+{
+    "frame_index": 45,
+    "crop_coordinates": {
+        "x1": 239,
+        "y1": 357,
+        "x2": 698,
+        "y2": 857
+    },
+    "saved_file": "./output/crop_frame_45.png"
+}
